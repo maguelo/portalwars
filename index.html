@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas con Piezas</title>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+    <style>
+        /* Estilo para el canvas */
+        #canvas {
+            border: 1px solid black;
+            background-color: #e6ffe6;
+            /* verde muy claro */
+        }
+
+        .canvas-container {
+            display: flex;
+            align-items: start;
+            justify-content: center;
+        }
+
+        .menu {
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+        }
+               /* Estilo para el botón del accordion */
+.accordionButton {
+    background-color: #eee;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Estilo para el panel del accordion */
+.panel {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+}
+    </style>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="https://cdn.rawgit.com/mebjas/html5-qrcode/master/minified/html5-qrcode.min.js"></script>
+
+</head>
+
+<body>
+    <div class="canvas-container">
+        <canvas id="canvas" width="1500" height="800"></canvas>
+        <div class="menu">
+            <!-- <input type="checkbox" id="showTextCheckbox"> Mostrar texto
+            <input type="checkbox" id="seasonCheckbox"> Estación (Invierno si está marcado, Verano si no) -->
+
+            <label>Mostrar texto:
+                <input type="checkbox" id="showTextCheckbox"> <!-- Actualizar ID -->
+            </label>
+            <label>Estación Invierno:
+                <input type="checkbox" id="seasonCheckbox"> <!-- Actualizar ID -->
+            </label>
+            <label>Probabilidad de Río (%): <input type="number" id="riverProbabilityInput" min="0" max="100" value="5">
+            </label>
+            <label>Estilo de juego:
+                <select id="gameStyle">
+                    <option value="normal">Normal</option>
+                    <option value="dificil">Difícil</option>
+                    <option value="experto">Experto</option>
+                </select>
+            </label>
+            <label for="placementProbabilityInput">Probabilidad de Ubicación:
+                <input type="number" id="placementProbabilityInput" min="0" max="1" step="0.01" value="1.0">
+            </label>
+            <label for="minPiecesInput">Número mínimo de piezas antes de reducir la probabilidad:
+                <input type="number" id="minPiecesInput" min="0" value="3"></label>
+
+
+            <div class="accordion">
+                <button class="accordionButton">Piezas</button>
+                <div class="panel">
+                    <ul id="listaPiezas">
+                        <!-- Aquí se añadirán los elementos de la lista con JavaScript -->
+                    </ul>
+                </div>
+            </div>
+
+            <button onclick="placePieces()">Distribuir piezas</button>
+            <button id="generateQR">Generar QR</button>
+            <div id="qrcode"></div>
+            <button id="scanButton">Escanear QR</button>
+            <div id="reader" style="width:300px;height:300px;"></div>
+            <!-- Aquí puedes agregar más botones y opciones en el futuro -->
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
